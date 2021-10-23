@@ -9,13 +9,17 @@ import thunk from "redux-thunk";
 
 import rootReducer from "./Store/reducers";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

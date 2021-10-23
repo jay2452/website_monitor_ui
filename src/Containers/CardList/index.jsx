@@ -2,6 +2,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Chip,
   CircularProgress,
   Typography,
 } from "@mui/material";
@@ -11,6 +12,9 @@ import { makeStyles } from "@mui/styles";
 const useStyle = makeStyles((theme) => ({
   card: {
     margin: "10px 0",
+    "&:first-child": {
+        margin: "0px"
+    }
   },
   url: {},
   status: {},
@@ -38,7 +42,7 @@ const CardList = (props) => {
       {urlLists &&
         urlLists.map((item) => {
           return (
-            <Card className={classes.card}>
+            <Card key={item.id} className={classes.card}>
               {/* <CardMedia
                 component="img"
                 alt={item.url}
@@ -51,7 +55,9 @@ const CardList = (props) => {
                     {item.url}
                   </Typography>
                 </div>
-                <div className={classes.status}></div>
+                <div className={classes.status}>
+                    <Chip label={item.status ? "Up" : "Down"} variant="outlined" />
+                </div>
               </CardContent>
             </Card>
           );
